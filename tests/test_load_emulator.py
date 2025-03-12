@@ -8,7 +8,7 @@ from error_distribution import Distribution
 class TestLoadEmulator(unittest.TestCase):
     def setUp(self):
         self.distribution = MagicMock(spec=Distribution)
-        self.distribution.sample.return_value = 0
+        self.distribution.sample.return_value = [0]
         self.emulator = LoadEmulator(self.distribution)
 
     def test_get_messages(self):
@@ -28,13 +28,13 @@ class TestLoadEmulator(unittest.TestCase):
             self.assertEqual(messages[i].get_ts(), groundtruth[i].get_ts())
 
     def test_get_messages_default_ts(self):
-        self.distribution.sample.return_value = 5
+        self.distribution.sample.return_value = [5]
         messages = self.emulator.get_messages(3, step=10)
         current_ts = time.time_ns()
         self.assertTrue(all(msg.get_ts() <= current_ts for msg in messages))
 
     def test_get_messages_with_groundtruth_default_ts(self):
-        self.distribution.sample.return_value = 5
+        self.distribution.sample.return_value = [5]
         messages, groundtruth = self.emulator.get_messages_with_groundtruth(3, step=10)
         current_ts = time.time_ns()
         self.assertTrue(all(msg.get_ts() <= current_ts for msg in messages))

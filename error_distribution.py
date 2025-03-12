@@ -16,10 +16,8 @@ class UniformDistribution(Distribution):
     def __init__(self, low=0, high=1):
         self.low = low
         self.high = high
-        def sample(self, size=1):
+    def sample(self, size=1):
             return np.random.uniform(self.low, self.high, size)
-    def sample(self, size):
-        return np.random.uniform(self.low, self.high, size)
 
 class ExponentialDistribution(Distribution):
     def __init__(self, scale=1):

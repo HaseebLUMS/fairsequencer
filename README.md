@@ -21,4 +21,4 @@ Workflow:
     # Get the topological sort of the matrix
 
 ## Run Tests
-`python3 -m unittest discover -s tests`
+`python3 -m unittest discover -s tests -f`
