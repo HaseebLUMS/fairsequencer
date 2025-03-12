@@ -39,7 +39,7 @@ def main():
 
 
     # 1. Compare with ground truth
-    # We would never make i < j => i > j, we may make i < j => i = j
+    # We would never make i < j => i > j, we may make i < j => i = j (or WOULD WE?)
     # This is a boolean correctness check
 
     # 2. Check number of batches, more batches => better fairness
