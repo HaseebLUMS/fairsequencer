@@ -13,15 +13,13 @@ def main():
 
     # pass the messages and error distributions to ProbabilityModel
     prob_model = PM()
-    prob_matrix = prob_model.calculate_probability_matrix(messages, dists)
+    prob_matrix = prob_model.calculate_probability_matrix_dummy(messages, dists)
 
     # get the topological order
     unique, order = get_topo_order(prob_matrix, EDGE_THRESH)
 
-    if unique:
-        print("Unique Hamiltonian Path Exists")
-    else:
-        print("No, Unique Hamiltonian Path Does Not Exist")
+    if unique: print("Unique Hamiltonian Path Exists")
+    else: print("No, Unique Hamiltonian Path Does Not Exist")
     
     print("Order: ", order)
 

@@ -34,9 +34,4 @@ def get_topo_order(graph, threshold=1) -> tuple[bool, list[int]]:
     if len(topo_order) != n:
         return (False, [])  # No valid topological order (cycle exists)
 
-    # Check if the topological order forms a strict linear path
-    for i in range(n - 1):
-        if topo_order[i + 1] not in adj_list[topo_order[i]]:
-            unique = False  # The order is not a strict linear path
-
     return (unique, topo_order)
