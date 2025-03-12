@@ -1,7 +1,7 @@
 from error_distribution import GaussianDistribution as Gus
 from load_emulator import LoadEmulator as LE
 from probability_model import ProbabilityModel as PM
-from utils import get_topo_order
+import utils
 
 N = 3
 EDGE_THRESH = 0.8
@@ -16,7 +16,7 @@ def main():
     prob_matrix = prob_model.calculate_probability_matrix_dummy(messages, dists)
 
     # get the topological order
-    unique, order = get_topo_order(prob_matrix, EDGE_THRESH)
+    unique, order = utils.get_topo_order(prob_matrix, EDGE_THRESH)
 
     if unique: print("Unique Hamiltonian Path Exists")
     else: print("No, Unique Hamiltonian Path Does Not Exist")
