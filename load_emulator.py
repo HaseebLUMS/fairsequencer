@@ -1,10 +1,7 @@
 import time
 from typing import List
 from error_distribution import Distribution
-
-class Message:
-    def __init__(self, ts): self.ts = ts
-    def get_ts(self): return self.ts
+from message import Message
 
 class LoadEmulator:
     def __init__(self, distribtuion: Distribution):

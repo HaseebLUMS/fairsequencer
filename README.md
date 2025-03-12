@@ -10,8 +10,15 @@ First Experiment:
 
 - See under several clock drfit distributions what are the resuls of the above
 
-TODO:
-Get messages from load_emulator, calculate probabilities, make a graph, get topo sort
+Workflow:
+
+    # create N error distribtions
+    # create N load emulators
+    # Get one message from each load emulator
+    # pass the messages and error distributions to ProbabilityModel
+    # ProbabilitModel returns a N*N probability matrix
+    # Use this matrix to create a graph, where only edges with probability > `edge_thresh` are present
+    # Get the topological sort of the matrix
 
 ## Run Tests
 `python3 -m unittest discover -s tests`
