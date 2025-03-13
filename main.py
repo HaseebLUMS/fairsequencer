@@ -32,17 +32,12 @@ def main():
     if unique:
         print("Unique Hamiltonian Path Exists")
         print("Order: ", order)
-    else: print("No, Unique Hamiltonian Path Does Not Exist")
+    else: print("No, Unique Hamiltonian Path Does Not Exist")  # why does this ever happen?
 
     batches = get_batches(order, prob_matrix, EDGE_THRESH)
     pretty_print_batches(batches)
 
-
-    # 1. Compare with ground truth
-    # We would never make i < j => i > j, we may make i < j => i = j (or WOULD WE?)
-    # This is a boolean correctness check
-
-    # 2. Check number of batches, more batches => better fairness
+    # 1. Check number of batches, more batches => better fairness
     # compare number of batches with a naive technique where any overlapping TrueTime intervals are batched together
     # This is quanititave comparison, showing fairness of one approach over the other
 
