@@ -27,6 +27,7 @@ def main():
     prob_matrix = prob_model.calculate_probability_matrix_assuming_guassian(messages, dists)
 
     # get the topological order
+    # TODO: Actually counting wins and ordering by that is equivalent to getting topo order
     unique, order = utils.get_topo_order(prob_matrix)
 
     if unique:
