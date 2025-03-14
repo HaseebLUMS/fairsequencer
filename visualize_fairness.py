@@ -56,7 +56,7 @@ def plot_fairness_heatmap(output1_list, output2_list, labels=None):
     else:
         plt.xticks(rotation=0)
     
-    plt.savefig("tmp.pdf", bbox_inches='tight')
+    plt.savefig("usefulness.pdf", bbox_inches='tight')
     # plt.show()
 
 # Example usage:
