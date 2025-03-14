@@ -4,13 +4,15 @@ from load_emulator import LoadEmulator as LE
 from probability_model import ProbabilityModel as PM
 from message import Message
 from batching import get_batches, pretty_print_batches
-import utils
+import tommy
+import truetime
 
 N = 5
 EDGE_THRESH = 0.75
 
 def main():
-    dists = [Gus(0, 10) for _ in range(N)] # create N error distribtions
+    ###### Setup Load ######
+    dists = [Gus(0, 2) for _ in range(N)] # create N error distribtions
     emulators = [LE(dist) for dist in dists]  # create N load emulators, each with a different error distribution
 
     messages: List[Message] = []  # create a list of messages
@@ -22,25 +24,13 @@ def main():
 
     assert len(messages) == len(dists) == len(groundtruth) == N
 
-    # pass the messages and error distributions to ProbabilityModel
-    prob_model = PM()
-    prob_matrix = prob_model.calculate_probability_matrix_assuming_guassian(messages, dists)
+    ###### Get Tommy Ranking ######
+    tommy_batches = tommy.tommy(messages=messages, dists=dists, EDGE_THRESH=EDGE_THRESH)
+    pretty_print_batches(tommy_batches)
 
-    # get the topological order
-    # TODO: Actually counting wins and ordering by that is equivalent to getting topo order
-    unique, order = utils.get_topo_order(prob_matrix)
-
-    if unique:
-        print("Unique Hamiltonian Path Exists")
-        print("Order: ", order)
-    else: print("No, Unique Hamiltonian Path Does Not Exist")  # why does this ever happen?
-
-    batches = get_batches(order, prob_matrix, EDGE_THRESH)
-    pretty_print_batches(batches)
-
-    # 1. Check number of batches, more batches => better fairness
-    # compare number of batches with a naive technique where any overlapping TrueTime intervals are batched together
-    # This is quanititave comparison, showing fairness of one approach over the other
+    ###### Get TrueTime Ranking ######
+    truetime_batches = truetime.truetime(messages=messages, dists=dists, EDGE_THRESH=EDGE_THRESH)
+    pretty_print_batches(truetime_batches)
 
 if __name__ == '__main__':
     main()
