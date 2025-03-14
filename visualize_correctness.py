@@ -77,7 +77,7 @@ def plot_ras_heatmap(output1_list, output2_list, ground_truth_list, labels=None)
     
     ax = sns.heatmap(ras_matrix, annot=num_configs <= 50, cmap="RdYlGn", center=0, fmt=".2f" if num_configs <= 50 else "",
                       xticklabels=labels if (labels and len(labels) <= 50) else "auto",
-                      yticklabels=["Technique 1", "Technique 2"], linewidths=0,
+                      yticklabels=["Tommy", "TrueTime"], linewidths=0,
                       vmin=-1, vmax=1, cbar=True)
     
     cbar = ax.collections[0].colorbar
