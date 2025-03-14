@@ -18,7 +18,6 @@ def main():
 
     for _ in range(1000):
         ###### Setup Load ######
-        
         dists = [Gus(random.randint(0, 100), random.randint(10, 1000)) for _ in range(N)] # create N error distribtions
         emulators = [LE(dist) for dist in dists]  # create N load emulators, each with a different error distribution
 
