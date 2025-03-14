@@ -20,5 +20,10 @@ Workflow:
     # Use this matrix to create a graph, where only edges with probability > `edge_thresh` are present
     # Get the topological sort of the matrix
 
+
+March 13:
+    # Dont use graph method, use wins counting method
+    # Verify that probability based would lead to an ordering different from naive (rama) method
+
 ## Run Tests
 `python3 -m unittest discover -s tests -f`
