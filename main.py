@@ -18,7 +18,7 @@ def main():
     output2: List[List[List[int]]] = []
     truths: List[List[List[int]]] = []
 
-    for _ in range(1000):
+    for _ in range(500):
         ###### Setup Load ######
         dists = [Gus(random.randint(0, 30), random.randint(1, 10)) for _ in range(N)] # create N error distribtions
         emulators = [LE(dist) for dist in dists]  # create N load emulators, each with a different error distribution

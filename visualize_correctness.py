@@ -71,8 +71,9 @@ def plot_ras_heatmap(output1_list, output2_list, ground_truth_list, labels=None)
     # Stack both technique RAS scores for visualization
     ras_matrix = np.vstack([ras_1, ras_2])
     
-    fig_width = max(12, num_configs / 50)  # Adaptive width based on number of configurations
-    fig_height = 4  # Slightly taller to fit two rows
+    fig_width = 15
+    # fig_width = max(12, num_configs / 50)  # Adaptive width based on number of configurations
+    fig_height = 3  # Slightly taller to fit two rows
     plt.figure(figsize=(fig_width, fig_height))
     
     ax = sns.heatmap(ras_matrix, annot=num_configs <= 50, cmap="RdYlGn", center=0, fmt=".2f" if num_configs <= 50 else "",
@@ -81,15 +82,16 @@ def plot_ras_heatmap(output1_list, output2_list, ground_truth_list, labels=None)
                       vmin=-1, vmax=1, cbar=True)
     
     cbar = ax.collections[0].colorbar
-    cbar.set_label("Rank Agreement Score (-1 to 1)")
+    cbar.set_label("Rank Agreement\nScore")
+    # cbar.set_label("RAS (-1 to 1)")
     cbar.set_ticks([-1, 0, 1])
-    cbar.set_ticklabels(["Incorrect", "Random", "Perfect"])  
+    cbar.set_ticklabels(["Incorrect", "Indecisve", "Perfect"])  
     
     # plt.title("Comparison of Techniques Against Ground Truth using Rank Agreement Score")
     plt.xlabel("Configuration")
     
     if num_configs > 50:
-        xticks = np.linspace(0, num_configs - 1, min(20, num_configs), dtype=int)
+        xticks = np.linspace(0, num_configs - 1, min(10, num_configs), dtype=int)
         ax.set_xticks(xticks)
         if labels:
             ax.set_xticklabels([labels[i] for i in xticks], rotation=0)

@@ -28,8 +28,10 @@ def plot_fairness_heatmap(output1_list, output2_list, labels=None):
     # Reshape to 1 row for heatmap visualization
     fairness_matrix = fairness_scores.reshape(1, -1)
     
-    fig_width = max(12, num_configs / 50)  # Adaptive width based on number of configurations
-    fig_height = 2  # Fixed height to avoid excessive stretching
+    # fig_width = max(12, num_configs / 50)  # Adaptive width based on number of configurations
+    # fig_height = 2  # Fixed height to avoid excessive stretching
+    fig_width = 15
+    fig_height = 1.5
     plt.figure(figsize=(fig_width, fig_height))
     
     ax = sns.heatmap(fairness_matrix, annot=num_configs <= 50, cmap="RdYlGn", center=0, fmt=".2f" if num_configs <= 50 else "",
@@ -47,7 +49,7 @@ def plot_fairness_heatmap(output1_list, output2_list, labels=None):
     
     # Make x ticks sparse and horizontal
     if num_configs > 50:
-        xticks = np.linspace(0, num_configs - 1, min(20, num_configs), dtype=int)  # Reduce number of ticks
+        xticks = np.linspace(0, num_configs - 1, min(10, num_configs), dtype=int)  # Reduce number of ticks
         ax.set_xticks(xticks)
         if labels:
             ax.set_xticklabels([labels[i] for i in xticks], rotation=0)  # Keep labels horizontal
