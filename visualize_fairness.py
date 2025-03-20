@@ -57,9 +57,9 @@ def plot_fairness_heatmap(output1_list, output2_list, labels=None):
             ax.set_xticklabels([str(i) for i in xticks], rotation=0)  # Use only numeric indices, horizontal
     else:
         plt.xticks(rotation=0)
-    
-    plt.savefig("usefulness.pdf", bbox_inches='tight')
-    # plt.show()
+
+    # plt.savefig("figs/usefulness.pdf", bbox_inches='tight')
+    plt.show()
 
 # Example usage:
 # plot_fairness_heatmap([[[1], [2, 3]], [[4, 5], [6]]], [[[1, 2], [3]], [[4], [5, 6]]])

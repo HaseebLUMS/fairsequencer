@@ -100,4 +100,5 @@ def plot_ras_heatmap(output1_list, output2_list, ground_truth_list, labels=None)
     else:
         plt.xticks(rotation=0)
     
-    plt.savefig("truthfulness.pdf", bbox_inches='tight')
+    # plt.savefig("figs/truthfulness.pdf", bbox_inches='tight')
+    plt.show()
