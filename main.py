@@ -9,6 +9,7 @@ import tommy
 import truetime
 import visualize_fairness
 import visualize_correctness
+from utils import get_curr_time
 
 N = 5
 EDGE_THRESH = 0.75
@@ -25,8 +26,10 @@ def main():
 
         messages: List[Message] = []  # create a list of messages
         groundtruth: List[Message] = []  # create a list of groundtruths, i.e., messages with errors
-        for em in emulators:
-            samples, groundtruths = em.get_messages_with_groundtruth(1)
+        ts = get_curr_time()
+        step = 10
+        for ind, em in enumerate(emulators):
+            samples, groundtruths = em.get_messages_with_groundtruth(1, ts + ind * step)
             messages.extend(samples)
             groundtruth.extend(groundtruths)
 

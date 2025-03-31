@@ -9,11 +9,11 @@ class LoadEmulator:
 
     def get_messages(self, n, ts=None, step=1) -> List[Message]:
         if (ts is None): ts = get_curr_time()
-        return [Message(ts + i * step + self.distribution.sample(1)[0]) for i in range(n)]
+        return [Message(ts + (i * step) + self.distribution.sample(1)[0]) for i in range(n)]
 
     def get_messages_with_groundtruth(self, n, ts=None, step=1) -> tuple[List[Message], List[Message]]:
         '''
         Samples, Groundtruth
         '''
         if (ts is None): ts = get_curr_time()
-        return [Message(ts + i * step + self.distribution.sample(1)[0]) for i in range(n)], [Message(ts + i * step) for i in range(n)]
+        return [Message(ts + (i * step) + self.distribution.sample(1)[0]) for i in range(n)], [Message(ts + i * step) for i in range(n)]
