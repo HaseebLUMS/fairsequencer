@@ -74,34 +74,50 @@ min_step, max_step = min(steps), max(steps)
 def scale_marker_size(step, base=30, scale=70):
     return base + scale * ((step - min_step) / (max_step - min_step))
 
-# Plotting
+import matplotlib.cm as cm
+
 plt.figure(figsize=(7, 4))
 
-# Tommy (hollow circle)
-for (var, ras), step in zip(tommy_points, step_sizes):
-    plt.scatter(var, ras,
-                marker='o', facecolors='none', edgecolors='blue',
-                s=scale_marker_size(step), alpha=0.9, linewidths=1)
+# Normalize step size for both size and color
+norm = lambda step: (step - min_step) / (max_step - min_step)
+tommy_cmap = cm.Greens
+truetime_cmap = cm.Oranges
 
-# TrueTime (hollow star)
-for (var, ras), step in zip(tt_points, step_sizes):
+# Tommy (hollow circle with gradient edge color)
+for (var, ras), step in zip(tommy_points, step_sizes):
+    color = tommy_cmap(norm(step))
     plt.scatter(var, ras,
-                marker='*', facecolors='none', edgecolors='orange',
-                s=scale_marker_size(step), alpha=0.9, linewidths=1)
+                marker='o',
+                facecolors='none',
+                edgecolors=color,
+                s=scale_marker_size(step),
+                alpha=0.9,
+                linewidths=1)
+
+# TrueTime (hollow star with gradient edge color)
+for (var, ras), step in zip(tt_points, step_sizes):
+    color = truetime_cmap(norm(step))
+    plt.scatter(var, ras,
+                marker='*',
+                facecolors='none',
+                edgecolors=color,
+                s=scale_marker_size(step),
+                alpha=0.9,
+                linewidths=1)
 
 plt.xlabel("Std. Dev.")
 plt.ylabel("Avg. RAS")
-# plt.title("Tommy (○) vs. TrueTime (★) — Marker Size ∝ Step Size")
 plt.grid(True, linestyle='--', alpha=0.5)
 
 # Manual legend
 legend_elements = [
-    Line2D([0], [0], marker='o', color='blue', label='Tommy',
-           markerfacecolor='none', markersize=18, linestyle='None'),
-    Line2D([0], [0], marker='*', color='orange', label='TrueTime',
-           markerfacecolor='none', markersize=18, linestyle='None')
+    Line2D([0], [0], marker='o', color='green', label='Tommy',
+           markerfacecolor='none', markersize=15, linestyle='None'),
+    Line2D([0], [0], marker='*', color='darkorange', label='TrueTime',
+           markerfacecolor='none', markersize=15, linestyle='None')
 ]
 plt.legend(handles=legend_elements)
 
 plt.tight_layout()
 plt.savefig("figs/ras_step_variation.pdf", bbox_inches='tight')
+# plt.show()
