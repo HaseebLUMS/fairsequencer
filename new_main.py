@@ -19,8 +19,8 @@ N = 5
 EDGE_THRESH = 0.75
 RUNS_PER_CONFIG = 10
 
-steps = list(range(1, 100, 2))       # Step size variations
-vars_ = list(range(1, 41, 2))       # Variance values
+steps = list(range(1, 50, 2))       # Step size variations
+vars_ = list(range(1, 121, 2))       # Variance values
 mean_range = (0, 20)                # Mean randomly sampled per run
 
 def simulate_and_compute_ras(step, variance):
@@ -105,7 +105,7 @@ for (var, ras), step in zip(tt_points, step_sizes):
                 alpha=0.9,
                 linewidths=1)
 
-plt.xlabel("Std. Dev.")
+plt.xlabel("Clocks (Std.) Deviation")
 plt.ylabel("Fairness (RAS)")
 plt.grid(True, linestyle='--', alpha=0.5)
 
