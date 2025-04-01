@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
 # Increase the font size
-plt.rcParams.update({'font.size': 22})
+plt.rcParams.update({'font.size': 16})
 
 # Parameters
 N = 5
@@ -118,10 +118,11 @@ legend_elements = [
 ]
 
 plt.legend(handles=legend_elements,
-           loc='lower center',
-           bbox_to_anchor=(0.5, 1.02),
+           loc='upper right',
+        #    bbox_to_anchor=(0.5, 1.02),
            ncol=len(legend_elements),
-           borderaxespad=0., fontsize=14)
+        #    borderaxespad=0.,
+           fontsize=14)
 
 ax = plt.gca()
 
