@@ -107,7 +107,7 @@ for (var, ras), step in zip(tt_points, step_sizes):
 
 plt.xlabel("Clocks (Std.) Deviation")
 plt.ylabel("Fairness (RAS)")
-plt.grid(True, linestyle='--', alpha=0.5)
+# plt.grid(True, linestyle='--', alpha=0.5)
 
 # Manual legend
 legend_elements = [
@@ -121,7 +121,13 @@ plt.legend(handles=legend_elements,
            loc='lower center',
            bbox_to_anchor=(0.5, 1.02),
            ncol=len(legend_elements),
-           borderaxespad=0.)
+           borderaxespad=0., fontsize=14)
+
+ax = plt.gca()
+
+# Set outer box (spines) to gray
+for spine in ax.spines.values():
+    spine.set_edgecolor('lightblue')
 
 plt.tight_layout()
 plt.savefig("figs/ras_step_variation.pdf", bbox_inches='tight')
