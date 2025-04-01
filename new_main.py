@@ -106,17 +106,22 @@ for (var, ras), step in zip(tt_points, step_sizes):
                 linewidths=1)
 
 plt.xlabel("Std. Dev.")
-plt.ylabel("Avg. RAS")
+plt.ylabel("Fairness (RAS)")
 plt.grid(True, linestyle='--', alpha=0.5)
 
 # Manual legend
 legend_elements = [
-    Line2D([0], [0], marker='o', color='green', label='Tommy',
-           markerfacecolor='none', markersize=15, linestyle='None'),
     Line2D([0], [0], marker='*', color='darkorange', label='TrueTime',
+           markerfacecolor='none', markersize=15, linestyle='None'),
+    Line2D([0], [0], marker='o', color='green', label='Tommy',
            markerfacecolor='none', markersize=15, linestyle='None')
 ]
-plt.legend(handles=legend_elements)
+
+plt.legend(handles=legend_elements,
+           loc='lower center',
+           bbox_to_anchor=(0.5, 1.02),
+           ncol=len(legend_elements),
+           borderaxespad=0.)
 
 plt.tight_layout()
 plt.savefig("figs/ras_step_variation.pdf", bbox_inches='tight')
