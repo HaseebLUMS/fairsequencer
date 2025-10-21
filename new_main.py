@@ -11,6 +11,9 @@ from visualize_correctness import compute_ras
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
+plt.rcParams['pdf.fonttype'] = 42
+plt.rcParams['ps.fonttype'] = 42
+
 # Increase the font size
 plt.rcParams.update({'font.size': 16})
 
