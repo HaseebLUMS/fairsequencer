@@ -25,3 +25,11 @@ class ExponentialDistribution(Distribution):
 
     def sample(self, size):
         return np.random.exponential(self.scale, size)
+
+class ArbitraryDistribution(Distribution):
+    # it will be defined by a histogram
+    def __init__(self, histogram: dict[int, int]):
+        self.histogram: dict[int, int] = histogram
+
+    def sample(self, size):
+        return np.random.choice(self.histogram.keys(), size, p=self.histogram.values())
