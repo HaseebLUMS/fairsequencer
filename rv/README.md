@@ -1,0 +1,1 @@
+Run ```python3 intrans_expn.py``` or run anyother intrans_* file. 
