@@ -22,7 +22,8 @@ N = 5
 EDGE_THRESH = 0.75
 RUNS_PER_CONFIG = 10
 
-steps = list(range(1, 50, 2))       # Step size variations
+steps = [50]       # Step size variations
+# steps = list(range(1, 50, 2))       # Step size variations
 vars_ = list(range(1, 121, 2))       # Variance values
 mean_range = (0, 20)                # Mean randomly sampled per run
 
@@ -82,29 +83,31 @@ import matplotlib.cm as cm
 plt.figure(figsize=(7, 4))
 
 # Normalize step size for both size and color
-norm = lambda step: (step - min_step) / (max_step - min_step)
+# norm = lambda step: (step - min_step) / (max_step - min_step)
 tommy_cmap = cm.Greens
 truetime_cmap = cm.Oranges
 
 # Tommy (hollow circle with gradient edge color)
 for (var, ras), step in zip(tommy_points, step_sizes):
-    color = tommy_cmap(norm(step))
+    color = tommy_cmap(1000)
+    # color = tommy_cmap(norm(step))
     plt.scatter(var, ras,
                 marker='o',
                 facecolors='none',
                 edgecolors=color,
-                s=scale_marker_size(step),
+                # s=scale_marker_size(step),
                 alpha=0.9,
                 linewidths=1)
 
 # TrueTime (hollow star with gradient edge color)
 for (var, ras), step in zip(tt_points, step_sizes):
-    color = truetime_cmap(norm(step))
+    color = truetime_cmap(1000)
+    # color = truetime_cmap(norm(step))
     plt.scatter(var, ras,
                 marker='*',
                 facecolors='none',
                 edgecolors=color,
-                s=scale_marker_size(step),
+                # s=scale_marker_size(step),
                 alpha=0.9,
                 linewidths=1)
 
@@ -134,5 +137,6 @@ for spine in ax.spines.values():
     spine.set_edgecolor('lightblue')
 
 plt.tight_layout()
-plt.savefig("figs/ras_step_variation.pdf", bbox_inches='tight')
+plt.savefig("figs/ras.pdf", bbox_inches='tight')
+# plt.savefig("figs/ras_step_variation.pdf", bbox_inches='tight')
 # plt.show()
